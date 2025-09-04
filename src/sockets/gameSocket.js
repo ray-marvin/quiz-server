@@ -93,6 +93,14 @@ module.exports = function initializeSocket(io) {
           const currentGame = await GameSession.findById(p.gameId);
           const userId = p.userId;
 
+          // Validating answer
+          if (!Number.isInteger(answer) || answer < 1 || answer > 4) {
+            p.emit("game:warn", {
+              message: "Invalid answer choice, select between 1-4",
+            });
+            return;
+          }
+
           // Tracking player progress through questions
           const questionIndex = currentGame.progress.get(userId) || 0;
 
@@ -125,7 +133,6 @@ module.exports = function initializeSocket(io) {
 
           try {
             await currentGame.save();
-            console.log("Game session updated:", currentGame._id);
           } catch (error) {
             console.error("Error updating game session:", error);
           }
@@ -169,15 +176,12 @@ module.exports = function initializeSocket(io) {
                 ? user2?.username
                 : "none";
 
-            console.log("Winner:", user1?.username);
-
             if (score1 == score2) {
               currentGame.resultType = "draw";
             } else currentGame.resultType = "win";
 
             try {
               await currentGame.save();
-              console.log("Game session updated:", currentGame._id);
             } catch (error) {
               console.error("Error updating game session:", error);
             }
@@ -240,7 +244,6 @@ module.exports = function initializeSocket(io) {
 
       try {
         await game.save();
-        console.log("Game session updated:", currentGame._id);
       } catch (error) {
         console.error("Error updating game session:", error);
       }

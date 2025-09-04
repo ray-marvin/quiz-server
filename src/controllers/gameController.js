@@ -25,7 +25,7 @@ exports.startGame = async (req, res) => {
     });
 
     try {
-      console.info("Creating game session for above 2 players");
+      console.info("Creating game session for 2 players");
       await game.save();
       console.info("Game session created with ID:", game._id);
     } catch (error) {
