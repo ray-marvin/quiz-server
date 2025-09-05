@@ -140,7 +140,11 @@ docker-compose up
 
 ## **With Minikube (Kubernetes)**
 
-To build quiz-server and mongo service on minikube (refer image from src/kube/server.yaml)
+Go to src/kube/server.yaml
+```bash
+image: <your-docker-username>/quiz-server:latest  # Replace with your Docker Hub username
+```
+Run these commands
 
 ```bash
 minikube start
