@@ -42,8 +42,8 @@ module.exports = function initializeSocket(io) {
       waitingPlayers.push(socket);
     }
 
-    // If there are two players in the queue, start a new game session
-    if (waitingPlayers.length === 2) {
+    // If there are more two players in the queue, start a new game session
+    if (waitingPlayers.length >= 2) {
       const [p1, p2] = waitingPlayers.splice(0, 2);
 
       const sampleSize = await Question.countDocuments();
