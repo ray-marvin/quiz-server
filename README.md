@@ -195,4 +195,4 @@ minikube service quiz-server-service
 
 - Github code base deployed on Render and database connected to mongodb Atlas
 
-- Live Demo URL -- https://quiz-server-vbvm.onrender.com
+- Live demo production link -- https://quiz-server-vbvm.onrender.com
