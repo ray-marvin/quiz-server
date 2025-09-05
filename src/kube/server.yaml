@@ -17,11 +17,9 @@ spec:
           image: raymarvin/quiz-server:latest
           ports:
             - containerPort: 3000
-          env:
-            - name: MONGO_URI
-              value: mongodb://mongo-service:27017/quizgame
-            - name: JWT_SECRET
-              value: yourSuperSecretKey123
+          envFrom:
+            - secretRef:
+                name: quiz-server-env
 
 ---
 apiVersion: v1
